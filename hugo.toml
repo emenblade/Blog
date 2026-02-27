@@ -1,6 +1,6 @@
 baseURL = 'https://blog.emen.win'
 languageCode = 'en-us'
-title = 'Emenblade's Expanse'
+title = 'MN-Blog'
 theme = 'mana'
 tags = ["blog", "Emen", "expanse", "emenblade", "dark mode", "popular"]
 
