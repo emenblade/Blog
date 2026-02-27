@@ -1,0 +1,21 @@
+baseURL = "https://blog.emen.win/"
+languageCode = "en-us"
+title = "Emenblade's Expanse"
+theme = "mana"
+
+[params]
+  description = "Walkthroughs, tech, and whatever else."
+  author = "Emenblade"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  name = "Posts"
+  url = "/posts/"
+  weight = 2
