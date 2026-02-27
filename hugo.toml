@@ -1,6 +1,6 @@
 baseURL = 'https://blog.emen.win'
 languageCode = 'en-us'
-title = 'Domatas.com'
+title = 'Emenblade's Expanse'
 theme = 'mana'
 tags = ["blog", "Emen", "expanse", "emenblade", "dark mode", "popular"]
 
@@ -11,11 +11,11 @@ enableRobotsTXT = true
 # Theme configuration
 [params]
   description = "Emenblade's Expanse"
-  author = "emenblade"
+  author = "Emenblade"
   favicon = "favicon/favicon.ico"
   footerText = "Hey I know theres not much here, give a guy a break! sheeesh"
-  heroTitleLine1 = "Emenblade's expanse"
-  heroTitleLine2 = "we do stuff sometimes!"
+  heroTitleLine1 = "Emenblade's Expanse"
+  heroTitleLine2 = "Big,bald,bearded,bro,boldly blogs bogus banter?"
   heroLogo = "/images/Hey2.png"
   # 404 Page Configuration
   # Custom message for the 404 error page (supports HTML)
@@ -24,9 +24,9 @@ custom404Message = "Sorry, the page you are looking for could not be found. Just
 
   # Social media links
   [params.social]
-  #  github = "https://github.com/alexanderdomatas"
+    github = "https://github.com/emenblade"
   #  linkedin = "https://www.linkedin.com/in/yourprofile"
-  #  email = ""
+    email = "emenblade@gmail.com"
 
   # Avatar Configuration
   [params.avatar]
