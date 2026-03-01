@@ -22,13 +22,13 @@ https://github.com/emenblade/blogpusher
 
 #### Why do I want this?
 Well, Its a blog, and like so many youtube tutorials on how to start bloging and all that. [Network Chuck for example](https://youtu.be/dnE7c0ELEH8?si=-dx9wLqU_cWvIuLO) They start with obsidian posts, and then the process to get the content out on the blog involves opening a terminal and pushing stuff, or running python scripts and all that. That just didn't appeal to me. I wanted to be able to blog when I was out on the go, snap some pictures, make a gallery, write down some thoughts about it, and boom its up there! I wanted to be able to blog from my phone! I didnt want to have to mess around fixing tag formatting from obsidian to how hugo processes them, I didnt like having to organize photos, put them in the right places, manually write links and all that. 
-![The GUI is clean and simple!](_2-image.jpg)
+![The GUI is clean and simple!](_2-image.png)
 
 #### What does this even do bro?
 Well It handles all the github pushing for me, the formatting, front matter, directory construction, image file handling, it makes sure the post has a title image, and it lets you pick the order of photos in the top of post gallery. It handles all the back end git hub stuff, so making a blog post isnt any harder than a quick social media post if you want it to be.  If its going to be a longer post, like this one you can absolutely use your computer and open up your favorite note taking app, write it all out, and post it in the box. OR if you are feeling real lazy like, well I suppose you could even get your favorite AI to give you a write up and generate the post for you! On the webserver there are input boxes for the tags, title, blog body content, and then a place to input the image files. it will rename them so they present in the correct order. if you don't want a photo to show up in the gallery you can tell it that too, and it will add an underscore to the front of the file name, which the gallery ignores. If you forget how to use markdown or want to link an image in line there is a cheat sheet at the bottom! 
-![mange posts](_3-image.jpg)
-![handles directory and renames photos](_4-image.jpg)
-![includes a cheat sheet in case you forget markdown](_6-image.jpg)
+![mange posts](_3-image.png)
+![handles directory and renames photos](_4-image.png)
+![includes a cheat sheet in case you forget markdown](_6-image.png)
 #### Cool story bro, how do I start?
 Well, so you're gonna need to install some things first.  
 - [Hugo](https://gohugo.io) 
@@ -52,7 +52,7 @@ So as anticipated, of course I've got a home lab. I personally have a little box
 
 #### Unraid
 Okay so if you're running Unraid, you're gonna wanna add the  [XML file](https://github.com/emenblade/blogpusher/blob/main/unraid-template.xml) to a directory on your flash drive. "/config/plugins/dockerMan/templates-user/" 
-So you *could* unplug the drive, put the file there and then put it back in your NAS. ORRR you could install a plugin for unraid called [Dyanmix File Manager](https://github.com/unraid/dynamix) Which if I'm reading the docs on the repo right, I guess on newer installs of unraid it might just come preinstalled?? Any way using that you can add the [XML file](https://github.com/emenblade/blogpusher/blob/main/unraid-template.xml) to the templates folder and from there you can add it as a new container. If you have more than one blog, when youre deploying the webservers, just give them different names and ports. ![This is where you throw the xml!](_5-image.jpg)
+So you *could* unplug the drive, put the file there and then put it back in your NAS. ORRR you could install a plugin for unraid called [Dyanmix File Manager](https://github.com/unraid/dynamix) Which if I'm reading the docs on the repo right, I guess on newer installs of unraid it might just come preinstalled?? Any way using that you can add the [XML file](https://github.com/emenblade/blogpusher/blob/main/unraid-template.xml) to the templates folder and from there you can add it as a new container. If you have more than one blog, when youre deploying the webservers, just give them different names and ports. ![This is where you throw the xml!](_5-image.png)
 
 Any way for a Blog more about making stuff work than the actual content I reckon this was more than enough of a write up! Happy blogging! 
 -Alex <3
