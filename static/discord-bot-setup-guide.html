@@ -605,57 +605,46 @@
 
     <div class="step">
       <div class="step-num">3</div>
-      <h3>Deploy from a GitHub Repo</h3>
-      <p>Choose <strong>Deploy from GitHub repo</strong>. Railway will ask you to connect a GitHub account — you can sign up for free GitHub right there if you don't have one, or Railway may let you paste a public repo URL directly.</p>
-      <p>The repo you want is:</p>
+      <h3>Deploy a Docker Image</h3>
+      <p>Choose <strong>Deploy a Docker Image</strong>. In the image name field, enter exactly:</p>
       <div class="value-block">
-        <span>https://github.com/Taaku18/discord-message-scheduler</span>
+        <span>taaku18/dms:stable</span>
       </div>
-      <a href="https://github.com/Taaku18/discord-message-scheduler" target="_blank" class="link-btn">View the bot's code →</a>
+      <p style="margin-top: 10px;">Then click <strong>Add Variables</strong> before deploying — don't click Deploy just yet.</p>
     </div>
 
     <div class="step">
       <div class="step-num">4</div>
-      <h3>Add your environment variables</h3>
-      <p>Before clicking Deploy, Railway will show you a <strong>Variables</strong> tab or button. Click it and add these three variables exactly:</p>
-
-      <div style="margin-top: 14px;">
-        <div class="value-label">Variable 1</div>
-        <div class="value-block">
-          <span><strong>TOKEN</strong> = paste your bot token here</span>
-        </div>
-
-        <div class="value-label" style="margin-top: 10px;">Variable 2</div>
-        <div class="value-block">
-          <span><strong>PREFIX</strong> = =</span>
-        </div>
-
-        <div class="value-label" style="margin-top: 10px;">Variable 3</div>
-        <div class="value-block">
-          <span><strong>SYNC_SLASH_COMMANDS</strong> = on</span>
-        </div>
-      </div>
-
-      <div class="callout tip">
+      <h3>Add your variables</h3>
+      <p>In the Variables tab, add these two variables:</p>
+      <table style="width:100%; margin-top: 14px; border-collapse: collapse; font-size: 14px;">
+        <thead>
+          <tr>
+            <th style="text-align:left; padding: 10px 14px; background: var(--plum); color: white; border-radius: 8px 0 0 0; font-family: 'Fraunces', serif; font-weight: 600;">Variable</th>
+            <th style="text-align:left; padding: 10px 14px; background: var(--plum); color: white; border-radius: 0 8px 0 0; font-family: 'Fraunces', serif; font-weight: 600;">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background: var(--rose-pale);">
+            <td style="padding: 10px 14px; border-bottom: 1px solid var(--border); font-family: monospace; font-weight: 700; color: var(--rose);">TOKEN</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid var(--border); color: #4a3a3c;">Paste your bot token here</td>
+          </tr>
+          <tr style="background: white;">
+            <td style="padding: 10px 14px; font-family: monospace; font-weight: 700; color: var(--rose); border-radius: 0 0 0 8px;">PREFIX</td>
+            <td style="padding: 10px 14px; color: #4a3a3c; font-family: monospace; border-radius: 0 0 8px 0;">=</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout tip" style="margin-top: 12px;">
         <span class="callout-icon">💡</span>
-        <span>The TOKEN is the secret key you copied in Part 1, Step 6. Paste it in exactly as it was — no spaces around it.</span>
+        <span>TOKEN is the secret key you copied in Part 1, Step 6. Paste it exactly — no spaces around it.</span>
       </div>
     </div>
 
     <div class="step">
       <div class="step-num">5</div>
       <h3>Deploy!</h3>
-      <p>Click <strong>Deploy Now</strong>. Railway will build and launch your bot. This takes about 1–2 minutes. You can watch the build logs — when you see something like "Logged in as YourBotName" it's up and running.</p>
-    </div>
-
-    <div class="step">
-      <div class="step-num">6</div>
-      <h3>Turn off SYNC_SLASH_COMMANDS</h3>
-      <p>After the bot logs in successfully, go back to the <strong>Variables</strong> tab in Railway and change <strong>SYNC_SLASH_COMMANDS</strong> from <code>on</code> to <code>off</code>. Then redeploy. This stops a 30-second delay on every future restart.</p>
-      <div class="callout tip">
-        <span class="callout-icon">💡</span>
-        <span>Next time you update the bot, flip it back to <code>on</code>, restart once, then back to <code>off</code> again.</span>
-      </div>
+      <p>Click <strong>Deploy Now</strong>. Railway will pull the image and launch your bot — this only takes about 30 seconds. You can watch the logs in real time, and when you see something like <em>"Logged in as YourBotName"</em> it's live and ready.</p>
     </div>
   </div>
 
@@ -698,6 +687,7 @@
       <h3>Select Bot Permissions</h3>
       <p>A new section called <strong>Bot Permissions</strong> will appear below. Check all of these:</p>
       <div class="perms-grid">
+        <div class="perm-item">Manage Roles</div>
         <div class="perm-item">Read Messages / View Channels</div>
         <div class="perm-item">Send Messages</div>
         <div class="perm-item">Send Messages in Threads</div>
