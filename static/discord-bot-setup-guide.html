@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Set Up Your Discord Bot ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #e8596a;
+    --rose-light: #f5c6cb;
+    --rose-pale: #fdf0f1;
+    --plum: #5c3d5e;
+    --plum-mid: #8b6b8d;
+    --cream: #fdfaf6;
+    --warm-grey: #7a7068;
+    --text: #2d2020;
+    --border: #eedee0;
+    --step-bg: #ffffff;
+    --accent-gold: #c9943a;
+    --success: #4a9e6b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(135deg, var(--plum) 0%, #8b4a6e 50%, var(--rose) 100%);
+    padding: 64px 24px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
+  }
+
+  .hero-emoji {
+    font-size: 56px;
+    display: block;
+    margin-bottom: 16px;
+    position: relative;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 5vw, 46px);
+    font-weight: 700;
+    color: white;
+    position: relative;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .hero p {
+    color: rgba(255,255,255,0.82);
+    font-size: 17px;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    font-weight: 300;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    font-size: 13px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── Layout ── */
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* ── Time estimate strip ── */
+  .time-strip {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 24px;
+    margin: -28px auto 40px;
+    max-width: 600px;
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 20px rgba(92,61,94,0.08);
+    position: relative;
+  }
+
+  .time-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--warm-grey);
+    font-weight: 500;
+  }
+
+  .time-item .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--rose);
+    flex-shrink: 0;
+  }
+
+  /* ── Section headers ── */
+  .section-label {
+    font-family: 'Fraunces', serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--plum);
+    margin-bottom: 6px;
+  }
+
+  .section-intro {
+    color: var(--warm-grey);
+    font-size: 15px;
+    margin-bottom: 28px;
+    font-weight: 300;
+  }
+
+  /* ── Part divider ── */
+  .part {
+    margin-bottom: 56px;
+  }
+
+  .part-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .part-number {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--plum), var(--rose));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .part-title {
+    flex: 1;
+  }
+
+  /* ── Steps ── */
+  .step {
+    background: var(--step-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 12px;
+    position: relative;
+    transition: box-shadow 0.2s;
+  }
+
+  .step:hover {
+    box-shadow: 0 4px 16px rgba(92,61,94,0.08);
+  }
+
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--rose-pale);
+    color: var(--rose);
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    border: 1.5px solid var(--rose-light);
+  }
+
+  .step h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--plum);
+    margin-bottom: 6px;
+  }
+
+  .step p {
+    font-size: 15px;
+    color: #4a3a3c;
+    font-weight: 300;
+  }
+
+  .step p + p {
+    margin-top: 8px;
+  }
+
+  /* ── Link buttons ── */
+  .link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--plum);
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 7px 14px;
+    border-radius: 8px;
+    margin-top: 12px;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .link-btn:hover {
+    background: #4a2f4c;
+    transform: translateY(-1px);
+  }
+
+  .link-btn.rose {
+    background: var(--rose);
+  }
+
+  .link-btn.rose:hover {
+    background: #d44455;
+  }
+
+  .link-btn.gold {
+    background: var(--accent-gold);
+  }
+
+  .link-btn.gold:hover {
+    background: #b5832e;
+  }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 14px;
+    margin: 14px 0;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .callout.tip {
+    background: #f0f9f4;
+    border: 1px solid #b8dfc8;
+    color: #2d5c3e;
+  }
+
+  .callout.warning {
+    background: #fff8ee;
+    border: 1px solid #f0d49a;
+    color: #7a5020;
+  }
+
+  .callout.info {
+    background: var(--rose-pale);
+    border: 1px solid var(--rose-light);
+    color: var(--plum);
+  }
+
+  .callout-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── Code / value blocks ── */
+  .value-block {
+    background: #f7f2f8;
+    border: 1px solid #e0d4e2;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--plum);
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .value-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--plum-mid);
+    margin-bottom: 4px;
+  }
+
+  /* ── Permissions checklist ── */
+  .perms-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  @media (max-width: 480px) {
+    .perms-grid { grid-template-columns: 1fr; }
+  }
+
+  .perm-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--rose-pale);
+    border: 1px solid var(--rose-light);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--plum);
+  }
+
+  .perm-item::before {
+    content: '✓';
+    color: var(--rose);
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  /* ── Done banner ── */
+  .done-banner {
+    background: linear-gradient(135deg, var(--success), #2d7a50);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    color: white;
+    margin-top: 48px;
+  }
+
+  .done-banner .done-emoji {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .done-banner h2 {
+    font-family: 'Fraunces', serif;
+    color: white;
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  .done-banner p {
+    color: rgba(255,255,255,0.85);
+    font-size: 15px;
+    font-weight: 300;
+    max-width: 400px;
+    margin: 0 auto 20px;
+  }
+
+  /* ── Commands section ── */
+  .commands-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .command-row {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .command-name {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--rose);
+    background: var(--rose-pale);
+    border: 1px solid var(--rose-light);
+    border-radius: 6px;
+    padding: 3px 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .command-desc {
+    font-size: 14px;
+    color: #4a3a3c;
+    font-weight: 300;
+    padding-top: 2px;
+  }
+
+  /* ── Progress strip ── */
+  .progress-strip {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 32px 0 8px;
+    flex-wrap: wrap;
+  }
+
+  .progress-dot {
+    height: 6px;
+    border-radius: 3px;
+    background: var(--rose-light);
+    transition: all 0.3s;
+  }
+
+  .progress-dot.active {
+    background: var(--rose);
+    width: 24px;
+  }
+
+  .progress-dot.done {
+    background: var(--plum-mid);
+    width: 10px;
+  }
+
+  .progress-dot:not(.active):not(.done) {
+    width: 10px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <span class="hero-emoji">🤖</span>
+  <div class="hero-badge">Step-by-step guide</div>
+  <h1>Set Up Your Own<br>Discord Bot</h1>
+  <p>Schedule messages, memes, and announcements — no coding needed.</p>
+</div>
+
+<div class="container">
+
+  <!-- Time strip -->
+  <div class="time-strip">
+    <div class="time-item"><span class="dot"></span> About 20 minutes total</div>
+    <div class="time-item"><span class="dot"></span> No coding required</div>
+    <div class="time-item"><span class="dot"></span> Free forever</div>
+  </div>
+
+  <!-- What you'll need -->
+  <div class="part">
+    <div class="part-header">
+      <div class="part-number">👀</div>
+      <div class="part-title">
+        <div class="section-label">Before you start</div>
+        <h2>What you'll need</h2>
+      </div>
+    </div>
+
+    <div class="step">
+      <h3>A Discord account</h3>
+      <p>You probably already have one! You'll need to be logged into Discord in your browser for parts of this guide.</p>
+    </div>
+
+    <div class="step">
+      <h3>An email address</h3>
+      <p>Just for signing up to the two free services we'll use. That's it — no credit card, no downloads.</p>
+    </div>
+
+    <div class="callout tip">
+      <span class="callout-icon">💡</span>
+      <span>Do this on a laptop or desktop, not your phone. Some of the pages are a bit fiddly on mobile.</span>
+    </div>
+  </div>
+
+  <!-- Part 1 -->
+  <div class="part">
+    <div class="part-header">
+      <div class="part-number">1</div>
+      <div class="part-title">
+        <div class="section-label">Part 1 of 4</div>
+        <h2>Create your bot in Discord</h2>
+      </div>
+    </div>
+    <p class="section-intro">Think of this as registering your bot's identity — giving it a name, a profile picture, and getting the secret key that makes it work.</p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Open the Discord Developer Portal</h3>
+      <p>This is where Discord lets you create bots. You just need to be logged into your Discord account.</p>
+      <a href="https://discord.com/developers/applications" target="_blank" class="link-btn rose">Open Developer Portal →</a>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Create a New Application</h3>
+      <p>Click the <strong>New Application</strong> button in the top right corner. Give it whatever name you'd like — this is your bot's name that will show up in Discord.</p>
+      <div class="callout info">
+        <span class="callout-icon">✨</span>
+        <span>Pick something fun! Your girls club members will see this name when the bot posts messages.</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Give it a profile picture</h3>
+      <p>On the General Information page, scroll down to find the <strong>App Icon</strong> section. Click it to upload an image — a cute logo, your club's icon, whatever you like!</p>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Go to the Bot tab</h3>
+      <p>In the left sidebar, click <strong>Bot</strong>. Then click <strong>Add Bot</strong> and confirm. This is what turns your application into an actual bot that can join servers.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <h3>Turn on the required permissions</h3>
+      <p>Scroll down to <strong>Privileged Gateway Intents</strong> and turn on both of these:</p>
+      <div class="perms-grid">
+        <div class="perm-item">Server Members Intent</div>
+        <div class="perm-item">Message Content Intent</div>
+      </div>
+      <p style="margin-top: 12px;">Then click <strong>Save Changes</strong> at the bottom.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-num">6</div>
+      <h3>Copy your bot token — keep it secret!</h3>
+      <p>Click the <strong>Reset Token</strong> button, confirm, and then copy the token that appears. <strong>Save it somewhere safe</strong> like a notes app — you'll need it soon.</p>
+      <div class="callout warning">
+        <span class="callout-icon">⚠️</span>
+        <span>Never share this token with anyone or post it publicly. It gives complete control over your bot. If you ever accidentally share it, come back here and click Reset Token again.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Part 2 -->
+  <div class="part">
+    <div class="part-header">
+      <div class="part-number">2</div>
+      <div class="part-title">
+        <div class="section-label">Part 2 of 4</div>
+        <h2>Deploy the bot for free</h2>
+      </div>
+    </div>
+    <p class="section-intro">Railway is a free cloud service that will run your bot 24/7 without you needing to leave your computer on.</p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Sign up to Railway</h3>
+      <p>Go to Railway and create a free account with your email or Google account.</p>
+      <a href="https://railway.app" target="_blank" class="link-btn rose">Sign up to Railway →</a>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Create a New Project</h3>
+      <p>From your Railway dashboard, click <strong>New Project</strong> in the top right.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Deploy from a GitHub Repo</h3>
+      <p>Choose <strong>Deploy from GitHub repo</strong>. Railway will ask you to connect a GitHub account — you can sign up for free GitHub right there if you don't have one, or Railway may let you paste a public repo URL directly.</p>
+      <p>The repo you want is:</p>
+      <div class="value-block">
+        <span>https://github.com/Taaku18/discord-message-scheduler</span>
+      </div>
+      <a href="https://github.com/Taaku18/discord-message-scheduler" target="_blank" class="link-btn">View the bot's code →</a>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Add your environment variables</h3>
+      <p>Before clicking Deploy, Railway will show you a <strong>Variables</strong> tab or button. Click it and add these three variables exactly:</p>
+
+      <div style="margin-top: 14px;">
+        <div class="value-label">Variable 1</div>
+        <div class="value-block">
+          <span><strong>TOKEN</strong> = paste your bot token here</span>
+        </div>
+
+        <div class="value-label" style="margin-top: 10px;">Variable 2</div>
+        <div class="value-block">
+          <span><strong>PREFIX</strong> = =</span>
+        </div>
+
+        <div class="value-label" style="margin-top: 10px;">Variable 3</div>
+        <div class="value-block">
+          <span><strong>SYNC_SLASH_COMMANDS</strong> = on</span>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <span class="callout-icon">💡</span>
+        <span>The TOKEN is the secret key you copied in Part 1, Step 6. Paste it in exactly as it was — no spaces around it.</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <h3>Deploy!</h3>
+      <p>Click <strong>Deploy Now</strong>. Railway will build and launch your bot. This takes about 1–2 minutes. You can watch the build logs — when you see something like "Logged in as YourBotName" it's up and running.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-num">6</div>
+      <h3>Turn off SYNC_SLASH_COMMANDS</h3>
+      <p>After the bot logs in successfully, go back to the <strong>Variables</strong> tab in Railway and change <strong>SYNC_SLASH_COMMANDS</strong> from <code>on</code> to <code>off</code>. Then redeploy. This stops a 30-second delay on every future restart.</p>
+      <div class="callout tip">
+        <span class="callout-icon">💡</span>
+        <span>Next time you update the bot, flip it back to <code>on</code>, restart once, then back to <code>off</code> again.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Part 3 -->
+  <div class="part">
+    <div class="part-header">
+      <div class="part-number">3</div>
+      <div class="part-title">
+        <div class="section-label">Part 3 of 4</div>
+        <h2>Invite the bot to your server</h2>
+      </div>
+    </div>
+    <p class="section-intro">Your bot is running in the cloud, but it needs an invite link to actually join your Discord server.</p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Go back to the Developer Portal</h3>
+      <p>Open your application in the Discord Developer Portal again.</p>
+      <a href="https://discord.com/developers/applications" target="_blank" class="link-btn rose">Open Developer Portal →</a>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Go to OAuth2 → URL Generator</h3>
+      <p>In the left sidebar, click <strong>OAuth2</strong>, then click <strong>URL Generator</strong> underneath it.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Select Scopes</h3>
+      <p>In the <strong>Scopes</strong> section, check both of these boxes:</p>
+      <div class="perms-grid">
+        <div class="perm-item">bot</div>
+        <div class="perm-item">applications.commands</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Select Bot Permissions</h3>
+      <p>A new section called <strong>Bot Permissions</strong> will appear below. Check all of these:</p>
+      <div class="perms-grid">
+        <div class="perm-item">Read Messages / View Channels</div>
+        <div class="perm-item">Send Messages</div>
+        <div class="perm-item">Send Messages in Threads</div>
+        <div class="perm-item">Embed Links</div>
+        <div class="perm-item">Attach Files</div>
+        <div class="perm-item">Read Message History</div>
+        <div class="perm-item">Mention Everyone</div>
+        <div class="perm-item">Use External Emojis</div>
+        <div class="perm-item">Add Reactions</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <h3>Copy and open your invite link</h3>
+      <p>Scroll to the very bottom of the page — you'll see a <strong>Generated URL</strong> box. Copy that link and open it in a new browser tab. Select your server from the dropdown and click <strong>Authorize</strong>.</p>
+      <div class="callout tip">
+        <span class="callout-icon">💡</span>
+        <span>You need to be an admin of the Discord server to add a bot to it.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Part 4 -->
+  <div class="part">
+    <div class="part-header">
+      <div class="part-number">4</div>
+      <div class="part-title">
+        <div class="section-label">Part 4 of 4</div>
+        <h2>Schedule your first message</h2>
+      </div>
+    </div>
+    <p class="section-intro">Your bot is live in your server! Here's how to use it.</p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Type /schedule in any channel</h3>
+      <p>In your Discord server, go to any channel and type <strong>/schedule</strong>. You should see the bot's commands pop up as suggestions. If nothing appears, wait a minute and try again — sometimes slash commands take a moment to register.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Use /schedule create to set up a message</h3>
+      <p>Click <strong>/schedule create</strong> and a popup form will appear asking for:</p>
+      <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+        <div class="callout info" style="margin: 0;">
+          <span class="callout-icon">💬</span>
+          <span><strong>Message</strong> — what you want the bot to say (can include links, images, text, anything)</span>
+        </div>
+        <div class="callout info" style="margin: 0;">
+          <span class="callout-icon">🕐</span>
+          <span><strong>Time</strong> — when to send it. You can write things like <em>next Friday at 9am</em>, <em>in 2 hours</em>, <em>December 25</em>, or a specific date and time</span>
+        </div>
+        <div class="callout info" style="margin: 0;">
+          <span class="callout-icon">🌍</span>
+          <span><strong>Timezone</strong> — type your city or timezone, like <em>America/Edmonton</em> or <em>America/Toronto</em></span>
+        </div>
+        <div class="callout info" style="margin: 0;">
+          <span class="callout-icon">🔁</span>
+          <span><strong>Repeat</strong> — how many minutes between repeats. Set <em>0</em> for a one-time message, <em>10080</em> for weekly, <em>1440</em> for daily</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>All the commands at a glance</h3>
+      <div class="commands-grid">
+        <div class="command-row">
+          <span class="command-name">/schedule create</span>
+          <span class="command-desc">Schedule a new message (one-time or repeating)</span>
+        </div>
+        <div class="command-row">
+          <span class="command-name">/schedule list</span>
+          <span class="command-desc">See all your upcoming scheduled messages</span>
+        </div>
+        <div class="command-row">
+          <span class="command-name">/schedule edit</span>
+          <span class="command-desc">Change the content of a scheduled message</span>
+        </div>
+        <div class="command-row">
+          <span class="command-name">/schedule delete</span>
+          <span class="command-desc">Cancel a scheduled message</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Done banner -->
+  <div class="done-banner">
+    <span class="done-emoji">🎉</span>
+    <h2>You're all set!</h2>
+    <p>Your bot is live, running for free, and ready to send messages on whatever schedule you choose.</p>
+    <a href="https://discord.com/developers/applications" target="_blank" class="link-btn gold">Discord Developer Portal</a>
+    &nbsp;
+    <a href="https://railway.app" target="_blank" class="link-btn" style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3);">Railway Dashboard</a>
+  </div>
+
+</div>
+</body>
+</html>
